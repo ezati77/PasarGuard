@@ -40,7 +40,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl \
 
 COPY start-railway.sh /start-railway.sh
 RUN chmod +x /start-railway.sh /code/start.sh
-
+# دانلود قالب رسمی صفحه‌ی ساب (subscription-template) در زمان build
+RUN mkdir -p /code/templates/subscription && \
+    curl -fsSL -o /code/templates/subscription/index.html \
+    https://github.com/PasarGuard/subscription-template/releases/latest/download/index.html
 # این خط به Railway می‌گوید پنل روی کدام پورت گوش می‌دهد تا موقع ساخت
 # دامنه، پورت درست را خودش به‌صورت خودکار تشخیص دهد.
 EXPOSE 8000
